@@ -27,8 +27,8 @@ jobs:
           arguments: build
           build-root-directory: traversals
 
-      - run: gradlew clean
+      - run: traversals/gradlew clean
 
-      - run: gradlew installDist
+      - run: traversals/gradlew installDist
 
-      - run: gradlew test
+      - run: traversals/gradlew test
