@@ -25,7 +25,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
-          build-root-directory: app
+          build-root-directory: traversals
 
       - run: ./gradlew clean
 
