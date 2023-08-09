@@ -1,11 +1,5 @@
 /*
     In-order traversal goes from bottom to the top, from left to right.
-    The tree structure in this example:
-         1
-       / | \
-      3  2  4
-     / \
-    5  6
  */
 package code.nary;
 
@@ -39,7 +33,7 @@ public class InOrderNaryTraversal<T> implements NaryTraversal<T> {
         return result;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // for test
         NaryVertex<Integer> v1 = new NaryVertex<>(1);
         NaryVertex<Integer> v2 = new NaryVertex<>(2);
         NaryVertex<Integer> v3 = new NaryVertex<>(3);
@@ -53,6 +47,6 @@ public class InOrderNaryTraversal<T> implements NaryTraversal<T> {
 
         InOrderNaryTraversal<Integer> traversal = new InOrderNaryTraversal<>();
         List<Integer> result = traversal.traverse(v1);
-        System.out.println(result); // must be [5, 3, 6, 1, 2, 4]
+        System.out.println(result); // must be [1, 3, 5, 6, 2, 4]
     }
 }

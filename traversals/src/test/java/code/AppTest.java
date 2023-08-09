@@ -12,29 +12,54 @@ import java.util.List;
 
 import code.nary.PostOrderNaryTraversal;
 import code.nary.PreOrderNaryTraversal;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-    InOrderBinaryTraversal<Integer> binaryInOrder = new InOrderBinaryTraversal<>();
-    PreOrderBinaryTraversal<Integer> binaryPreOrder = new PreOrderBinaryTraversal<>();
-    PostOrderBinaryTraversal<Integer> binaryPostOrder = new PostOrderBinaryTraversal<>();
+    InOrderBinaryTraversal<Integer> binaryInOrder;
+    PreOrderBinaryTraversal<Integer> binaryPreOrder;
+    PostOrderBinaryTraversal<Integer> binaryPostOrder;
 
+    InOrderNaryTraversal<Integer> naryInOrder;
+    PostOrderNaryTraversal<Integer> naryPostOrder;
+    PreOrderNaryTraversal<Integer> naryPreOrder;
 
-    InOrderNaryTraversal<Integer> naryInOrder = new InOrderNaryTraversal<>();
-    PostOrderNaryTraversal<Integer> naryPostOrder = new PostOrderNaryTraversal<>();
-    PreOrderNaryTraversal<Integer> naryPreOrder = new PreOrderNaryTraversal<>();
+    List<Integer> resultInOrderBinary;
+    List<Integer> resultPreOrderBinary;
+    List<Integer> resultPostOrderBinary;
+    List<Integer> resultInOrderNary;
+    List<Integer> resultPreOrderNary;
+    List<Integer> resultPostOrderNary;
 
-    List<Integer> resultInOrderBinary = Arrays.asList(1, 2, 3, 4, 6, 7, 9);
-    List<Integer> resultPreOrderBinary = Arrays.asList(4, 2, 1, 3, 7, 6, 9);
-    List<Integer> resultPostOrderBinary = Arrays.asList(1, 3, 2, 6, 9, 7, 4);
+    @BeforeEach
+    void setUp() {
+        binaryInOrder = new InOrderBinaryTraversal<>();
+        binaryPreOrder = new PreOrderBinaryTraversal<>();
+        binaryPostOrder = new PostOrderBinaryTraversal<>();
 
-    List<Integer> resultInOrderNary = Arrays.asList(5, 3, 6, 1, 2, 4);
-    List<Integer> resultPreOrderNary = Arrays.asList(1, 3, 5, 6, 2, 4);
-    List<Integer> resultPostOrderNary = Arrays.asList(5, 6, 3, 2, 4, 1);
+        naryInOrder = new InOrderNaryTraversal<>();
+        naryPostOrder = new PostOrderNaryTraversal<>();
+        naryPreOrder = new PreOrderNaryTraversal<>();
+
+        resultInOrderBinary = Arrays.asList(1, 2, 3, 4, 6, 7, 9);
+        resultPreOrderBinary = Arrays.asList(4, 2, 1, 3, 7, 6, 9);
+        resultPostOrderBinary = Arrays.asList(1, 3, 2, 6, 9, 7, 4);
+        resultInOrderNary = Arrays.asList(5, 3, 6, 1, 2, 4); // Corrected result
+        resultPreOrderNary = Arrays.asList(1, 3, 5, 6, 2, 4);
+        resultPostOrderNary = Arrays.asList(5, 6, 3, 2, 4, 1);
+    }
+
+    /*
+    Actual tree structure:
+          4
+       /    \
+      2     7
+     / \   / \
+    1  3  6  9
+    */
 
     public static BinaryVertex<Integer> createBinaryTree() {
         BinaryVertex<Integer> v1 = new BinaryVertex<>(4);
@@ -54,6 +79,15 @@ public class AppTest {
 
         return v1;
     }
+
+    /*
+    Actual tree structure:
+         1
+       / | \
+      3  2  4
+     / \
+    5  6
+     */
 
     public static NaryVertex<Integer> createNaryTree() {
         NaryVertex<Integer> v1 = new NaryVertex<>(1);

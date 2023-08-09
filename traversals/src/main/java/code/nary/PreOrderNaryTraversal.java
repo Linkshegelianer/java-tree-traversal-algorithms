@@ -1,11 +1,5 @@
 /*
     Pre-order traversal goes from top to the bottom, from left to right.
-    The tree structure in this example:
-         1
-       / | \
-      3  2  4
-     / \
-    5  6
  */
 package code.nary;
 
@@ -34,24 +28,7 @@ public class PreOrderNaryTraversal<T> implements NaryTraversal<T> {
                 }
             }
         }
+
         return result;
     }
-
-    public static void main(String[] args) {
-        NaryVertex<Integer> v1 = new NaryVertex<>(1);
-        NaryVertex<Integer> v2 = new NaryVertex<>(2);
-        NaryVertex<Integer> v3 = new NaryVertex<>(3);
-        NaryVertex<Integer> v4 = new NaryVertex<>(4);
-        NaryVertex<Integer> v5 = new NaryVertex<>(5);
-        NaryVertex<Integer> v6 = new NaryVertex<>(6);
-
-        // Create the tree structure
-        v1.children = Arrays.asList(v3, v2, v4);
-        v3.children = Arrays.asList(v5, v6);
-
-        PreOrderNaryTraversal<Integer> traversal = new PreOrderNaryTraversal<>();
-        List<Integer> result = traversal.traverse(v1);
-        System.out.println(result); // must be [1, 3, 5, 6, 2, 4]
-    }
-
 }
