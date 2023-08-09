@@ -1,6 +1,5 @@
-package code.nary;
+package code;
 
-import code.Vertex;
 import java.util.List;
 
 public class NaryVertex<T> extends Vertex<T> {

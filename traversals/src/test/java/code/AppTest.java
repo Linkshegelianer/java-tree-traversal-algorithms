@@ -1,17 +1,11 @@
 package code;
 
-import code.binary.BinaryVertex;
-import code.binary.InOrderBinaryTraversal;
-import code.binary.PostOrderBinaryTraversal;
-import code.binary.PreOrderBinaryTraversal;
-import code.nary.InOrderNaryTraversal;
-import code.nary.NaryVertex;
-
 import java.util.Arrays;
 import java.util.List;
 
-import code.nary.PostOrderNaryTraversal;
-import code.nary.PreOrderNaryTraversal;
+import code.algorithms.InOrderTraversal;
+import code.algorithms.PostOrderTraversal;
+import code.algorithms.PreOrderTraversal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-    InOrderBinaryTraversal<Integer> binaryInOrder;
-    PreOrderBinaryTraversal<Integer> binaryPreOrder;
-    PostOrderBinaryTraversal<Integer> binaryPostOrder;
-
-    InOrderNaryTraversal<Integer> naryInOrder;
-    PostOrderNaryTraversal<Integer> naryPostOrder;
-    PreOrderNaryTraversal<Integer> naryPreOrder;
+    InOrderTraversal<Integer> inOrderTraversal;
+    PreOrderTraversal<Integer> preOrderTraversal;
+    PostOrderTraversal<Integer> postOrderTraversal;
 
     List<Integer> resultInOrderBinary;
     List<Integer> resultPreOrderBinary;
@@ -36,13 +26,9 @@ public class AppTest {
 
     @BeforeEach
     void setUp() {
-        binaryInOrder = new InOrderBinaryTraversal<>();
-        binaryPreOrder = new PreOrderBinaryTraversal<>();
-        binaryPostOrder = new PostOrderBinaryTraversal<>();
-
-        naryInOrder = new InOrderNaryTraversal<>();
-        naryPostOrder = new PostOrderNaryTraversal<>();
-        naryPreOrder = new PreOrderNaryTraversal<>();
+        inOrderTraversal = new InOrderTraversal<>();
+        preOrderTraversal = new PreOrderTraversal<>();
+        postOrderTraversal = new PostOrderTraversal<>();
 
         resultInOrderBinary = Arrays.asList(1, 2, 3, 4, 6, 7, 9);
         resultPreOrderBinary = Arrays.asList(4, 2, 1, 3, 7, 6, 9);
@@ -105,9 +91,9 @@ public class AppTest {
 
     @Test
     void testBinary() {
-        List<Integer> expectedInOrder = binaryInOrder.traverse(createBinaryTree());
-        List<Integer> expectedPreOrder = binaryPreOrder.traverse(createBinaryTree());
-        List<Integer> expectedPostOrder = binaryPostOrder.traverse(createBinaryTree());
+        List<Integer> expectedInOrder = inOrderTraversal.traverse(createBinaryTree());
+        List<Integer> expectedPreOrder = preOrderTraversal.traverse(createBinaryTree());
+        List<Integer> expectedPostOrder = postOrderTraversal.traverse(createBinaryTree());
 
         assertThat(expectedInOrder).isEqualTo(resultInOrderBinary);
         assertThat(expectedPreOrder).isEqualTo(resultPreOrderBinary);
@@ -116,9 +102,9 @@ public class AppTest {
 
     @Test
     void testNary() {
-        List<Integer> expectedInOrder = naryInOrder.traverse(createNaryTree());
-        List<Integer> expectedPreOrder = naryPreOrder.traverse(createNaryTree());
-        List<Integer> expectedPostOrder = naryPostOrder.traverse(createNaryTree());
+        List<Integer> expectedInOrder = inOrderTraversal.traverse(createNaryTree());
+        List<Integer> expectedPreOrder = preOrderTraversal.traverse(createNaryTree());
+        List<Integer> expectedPostOrder = postOrderTraversal.traverse(createNaryTree());
 
         assertThat(expectedInOrder).isEqualTo(resultPostOrderNary); // fix
         assertThat(expectedPreOrder).isEqualTo(resultPreOrderNary);

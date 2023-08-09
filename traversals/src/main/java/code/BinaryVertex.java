@@ -1,8 +1,4 @@
-package code.binary;
-
-import code.Vertex;
-
-import java.util.List;
+package code;
 
 public class BinaryVertex<T> extends Vertex<T> {
 
