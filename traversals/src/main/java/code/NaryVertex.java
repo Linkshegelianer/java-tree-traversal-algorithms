@@ -17,5 +17,12 @@ public class NaryVertex<T> extends Vertex<T> {
         this.children = children;
     }
 
-    boolean processed;
+    public NaryVertex<T> childrenArr[];
+
+    public NaryVertex(T data, int n) {
+        super(data);
+        childrenArr = new NaryVertex[n];
+    }
+
+
 }

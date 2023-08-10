@@ -33,7 +33,7 @@ public class AppTest {
         resultInOrderBinary = Arrays.asList(1, 2, 3, 4, 6, 7, 9);
         resultPreOrderBinary = Arrays.asList(4, 2, 1, 3, 7, 6, 9);
         resultPostOrderBinary = Arrays.asList(1, 3, 2, 6, 9, 7, 4);
-        resultInOrderNary = Arrays.asList(5, 3, 6, 1, 2, 4); // Corrected result
+        resultInOrderNary = Arrays.asList(5, 6, 3, 2, 1, 4);
         resultPreOrderNary = Arrays.asList(1, 3, 5, 6, 2, 4);
         resultPostOrderNary = Arrays.asList(5, 6, 3, 2, 4, 1);
     }
@@ -89,6 +89,16 @@ public class AppTest {
         return v1;
     }
 
+    public static NaryVertex<Integer> createNaryTreeArr() {
+        int n = 3;
+        NaryVertex<Integer> root = new NaryVertex(1, n);
+        root.childrenArr[0] = new NaryVertex(3, n);
+        root.childrenArr[1] = new NaryVertex(2, n);
+        root.childrenArr[2] = new NaryVertex( 4, n);
+        root.childrenArr[0].childrenArr[0] = new NaryVertex(5, n);
+        root.childrenArr[0].childrenArr[1] = new NaryVertex(6, n);
+        return root;
+    }
     @Test
     void testBinary() {
         List<Integer> expectedInOrder = inOrderTraversal.traverse(createBinaryTree());
@@ -102,11 +112,11 @@ public class AppTest {
 
     @Test
     void testNary() {
-        List<Integer> expectedInOrder = inOrderTraversal.traverse(createNaryTree());
+        List<Integer> expectedInOrder = inOrderTraversal.traverse(createNaryTreeArr());
         List<Integer> expectedPreOrder = preOrderTraversal.traverse(createNaryTree());
         List<Integer> expectedPostOrder = postOrderTraversal.traverse(createNaryTree());
 
-        assertThat(expectedInOrder).isEqualTo(resultPostOrderNary); // fix
+        assertThat(expectedInOrder).isEqualTo(resultInOrderNary);
         assertThat(expectedPreOrder).isEqualTo(resultPreOrderNary);
         assertThat(expectedPostOrder).isEqualTo(resultPostOrderNary);
     }

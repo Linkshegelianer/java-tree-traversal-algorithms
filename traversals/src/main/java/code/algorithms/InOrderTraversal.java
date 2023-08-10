@@ -35,45 +35,26 @@ public class InOrderTraversal<T> implements Traversal<T> {
     }
 
     @Override
-    public List<T> traverse(NaryVertex<T> root) {
+    public List<T> traverse(NaryVertex<T> node) {
         LinkedList<T> result = new LinkedList<>();
-
-        if (root == null) {
+        if (node == null) {
             return result;
         }
 
-        Deque<NaryVertex<T>> stack = new LinkedList<>();
-        stack.add(root);
+        int total = node.childrenArr.length;
 
-        while (!stack.isEmpty()) {
-            NaryVertex<T> current = stack.pollLast();
+        // Traverse all children except the last one
+        for (int i = 0; i < total - 1; i++) {
+            result.addAll(traverse(node.childrenArr[i]));
+        }
 
-            result.addFirst(current.data);
+        result.add(node.data);
 
-            if (current.children != null) {
-                for (NaryVertex<T> child : current.children) {
-                    stack.add(child);
-                }
-            }
+        // Traverse the last child
+        if (total > 0) {
+            result.addAll(traverse(node.childrenArr[total - 1]));
         }
 
         return result;
-    }
-
-    public static void main(String[] args) { // for test
-        NaryVertex<Integer> v1 = new NaryVertex<>(1);
-        NaryVertex<Integer> v2 = new NaryVertex<>(2);
-        NaryVertex<Integer> v3 = new NaryVertex<>(3);
-        NaryVertex<Integer> v4 = new NaryVertex<>(4);
-        NaryVertex<Integer> v5 = new NaryVertex<>(5);
-        NaryVertex<Integer> v6 = new NaryVertex<>(6);
-
-        // Create the tree structure
-        v1.children = Arrays.asList(v3, v2, v4);
-        v3.children = Arrays.asList(v5, v6);
-
-        InOrderTraversal<Integer> traversal = new InOrderTraversal<>();
-        List<Integer> result = traversal.traverse(v1);
-        System.out.println(result); // must be [1, 3, 5, 6, 2, 4]
     }
 }
