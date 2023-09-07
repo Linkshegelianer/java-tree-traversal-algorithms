@@ -26,3 +26,9 @@ jobs:
         with:
           arguments: build
           build-root-directory: traversals
+
+      - name: Test with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test
+          build-root-directory: traversals
