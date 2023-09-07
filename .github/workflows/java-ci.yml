@@ -19,7 +19,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Make Gradlew Executable
-        run: chmod +x traversals/gradlew
+        run: chmod +x gradlew
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
@@ -27,8 +27,8 @@ jobs:
           arguments: build
           build-root-directory: traversals
 
-      - run: traversals/gradlew clean
+      - run: gradlew clean
 
-      - run: traversals/gradlew installDist
+      - run: gradlew installDist
 
-      - run: traversals/gradlew test
+      - run: gradlew test
